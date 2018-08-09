@@ -1,7 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import styled, { injectGlobal } from "styled-components";
 import registerServiceWorker from "./registerServiceWorker";
+
+import store from "../src/app/store";
 
 injectGlobal`
   body {
@@ -21,5 +24,10 @@ const AppContainer = styled.div`
 
 const App = () => <AppContainer>React App.</AppContainer>;
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 registerServiceWorker();
