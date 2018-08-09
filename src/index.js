@@ -6,23 +6,26 @@ import registerServiceWorker from "./registerServiceWorker";
 
 import store from "../src/app/store";
 
+import Dashboard from "./app/dashboard/dashboard-container";
+
 injectGlobal`
   body {
     margin: 0;
-    padding: 0;
   };
 `;
 
 const AppContainer = styled.div`
-  align-items: center;
-  background-color: #e3e7ea;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   height: 100vh;
   width: 100vw;
 `;
 
-const App = () => <AppContainer>React App.</AppContainer>;
+const App = () => (
+  <AppContainer>
+    <Dashboard />
+  </AppContainer>
+);
 
 ReactDOM.render(
   <Provider store={store}>
