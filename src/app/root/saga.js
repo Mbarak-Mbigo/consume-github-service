@@ -1,9 +1,7 @@
 // import sagas
+import { all } from "redux-saga/effects";
+import reposSaga from "../dashboard/saga";
 
-function configureSagas() {
-  return [
-    // ...sagas.
-  ];
+export default function* rootSaga() {
+  yield all([...reposSaga.map(saga => saga())]);
 }
-
-export default configureSagas;

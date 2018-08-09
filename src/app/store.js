@@ -1,22 +1,20 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleWare from "redux-saga";
 
-// rootReducer
-import { rootReducer, configureSagas } from "../app/root";
-// appSagas
-const appSagas = configureSagas();
+import { rootReducer } from "../app/root";
+import rootSaga from "./root/saga";
 
 // create sagaMiddleWare
 const sagaMiddleWare = createSagaMiddleWare();
 
-// mount it on the store
 const store = createStore(
-  //rootReducer
   rootReducer,
-  applyMiddleware(sagaMiddleWare)
+  compose(
+    applyMiddleware(sagaMiddleWare),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
 
-// run the saga
-sagaMiddleWare.run(appSagas);
+sagaMiddleWare.run(rootSaga);
 
 export default store;
