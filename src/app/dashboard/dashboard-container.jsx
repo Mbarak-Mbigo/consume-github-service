@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleFetchRepos() {
-    dispatch(fetchRepos());
+    dispatch(fetchRepos("Mbarak-Mbigo"));
   }
 });
 

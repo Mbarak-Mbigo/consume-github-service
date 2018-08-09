@@ -1,10 +1,13 @@
-import { takeLatest, put } from "redux-saga/effects";
+import { call, takeLatest, put } from "redux-saga/effects";
 
+import { getReposRequest } from "../API";
 import { FETCH_REPOS, fetchReposSucceeded, fetchReposFailed } from "./actions";
 
-function* fetchRepos() {
+function* fetchRepos({ username }) {
   try {
-    yield put(fetchReposSucceeded({ data: "data" }));
+    const { body } = yield call(getReposRequest, { username });
+
+    yield put(fetchReposSucceeded(body));
   } catch (error) {
     console.log("error", error);
     yield put(fetchReposFailed());

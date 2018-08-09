@@ -2,8 +2,9 @@ const FETCH_REPOS = "FETCH_REPOS";
 const FETCH_REPOS_SUCCEEDED = "FETCH_REPOS_SUCCEEDED";
 const FETCH_REPOS_FAILED = "FETCH_REPOS_FAILED";
 
-const fetchRepos = () => ({
-  type: FETCH_REPOS
+const fetchRepos = username => ({
+  type: FETCH_REPOS,
+  username
 });
 
 const fetchReposSucceeded = payLoad => ({
